@@ -18,9 +18,9 @@ public class ItemService {
 	}
 	
 	
-	public List<Items> showAllitems(){
-		List<Items> items = new ArrayList<Items>();
-		for(Items item : itemRepository.findAll()) {
+	public List<Item> showAllitems(){
+		List<Item> items = new ArrayList<Item>();
+		for(Item item : itemRepository.findAll()) {
 			items.add(item);
 		}
 		return items;
@@ -29,10 +29,7 @@ public class ItemService {
 	public void deleteMyitem(int ID) {
 		itemRepository.deleteById(ID);
 	}
-	
-	public Items findByItemIDAndItemname(String item,String itemnam) {
-		return itemRepository.findByItemIDAndItemname(item, itemnam);
-	}
+
 	
 	
 }

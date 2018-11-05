@@ -84,7 +84,7 @@ public class LoginController {
 
 	@GetMapping("/all-items")
 	public String showAllItems(HttpServletRequest request) {
-		request.setAttribute("items", itemservice.showAllitems());
+		request.setAttribute("item", itemservice.showAllitems());
 		request.setAttribute("mode", "All_items");
 		return "adminpage";
 	} 
@@ -92,14 +92,14 @@ public class LoginController {
 	@RequestMapping("/delete-item")
 	public String deleteItem(@RequestParam int ID, HttpServletRequest request) {
 		itemservice.deleteMyitem(ID);
-		request.setAttribute("items", itemservice.showAllitems());
+		request.setAttribute("item", itemservice.showAllitems());
 		request.setAttribute("mode", "All_items");
 		return "adminpage";
 	}
 
 	@GetMapping("/allproducts")
 	public @ResponseBody
-    Iterable<Items> getAllUsers() {
+    Iterable<Item> getAllUsers() {
 		// This returns a JSON or XML with the users
 		return itemservice.showAllitems();
 	}

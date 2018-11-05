@@ -5,5 +5,5 @@ com\hemanshu\UserService.class
 com\hemanshu\ItemService.class
 com\hemanshu\UserRepository.class
 com\hemanshu\UserRepo.class
-com\hemanshu\Items.class
+com\hemanshu\Item.class
 com\hemanshu\SeTeamProjectAdminApplication.class
