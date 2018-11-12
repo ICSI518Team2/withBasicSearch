@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class LoginController {
 	@Autowired
@@ -62,7 +64,7 @@ public class LoginController {
 				return "adminpage";
 			}
 			else
-				return "userpage";//change userpage to something page
+				return "userpage";
 		}
 		return "index";
 	}
@@ -97,10 +99,18 @@ public class LoginController {
 		return "adminpage";
 	}
 
-	@GetMapping("/allproducts")
+	@RequestMapping("/allproducts")
+	public String allproducts(HttpServletRequest request) {
+		request.setAttribute("item", itemservice.showAllitems());
+		request.setAttribute("mode", "All_Products");
+		return "allproducts";
+	}
+	@GetMapping("/allproductslist")
 	public @ResponseBody
-    Iterable<Item> getAllUsers() {
-		// This returns a JSON or XML with the users
+	Iterable<Item> getAllProducts()
+     {
+		// This returns a JSON or XML with the items
+
 		return itemservice.showAllitems();
 	}
 }

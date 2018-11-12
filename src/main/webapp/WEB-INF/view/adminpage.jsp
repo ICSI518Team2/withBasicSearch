@@ -87,11 +87,17 @@
 					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>ID</th>
+
 								<th>itemID</th>
-								<th>itemname</th>
+								<th>SellerID</th>
+								<th>Category</th>
+								<th>cost_price</th>
+								<th>product_name</th>
+								<th>Quantity</th>
+								<th>selling_price</th>
+								<th>Status</th>
 								
-								<th>itemdesc</th>
+								<th>Description</th>
 								
 								<th>Delete</th>
 						
@@ -99,16 +105,24 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="item" items="${items }">
+							<c:forEach var="item" items="${item}">
 								<tr>
-									<td>${item.ID}</td>
-									<td>${item.itemID}</td>
-									<td>${item.itemname}</td>
-									<td>${item.itemdesc}</td>
+                                    <td>${item.id}</td>
+									<td>${item.seller_id}</td>
+									<td>${item.category}</td>
+									<td>${item.cost_price}</td>
+									<td>${item.product_name}</td>
+									<td>${item.quantity}</td>
+									<td>${item.selling_price}</td>
+									<td>${item.status}</td>
+									<td>${item.description}</td>
+
+
+
 									
-									<td><a href="/delete-item?ID=${item.ID }"><span
+									<td><a href="/delete-item?ID=${item.id }"><span
 											class="glyphicon glyphicon-trash"></span></a></td>
-									
+
 								</tr>
 							</c:forEach>
 						</tbody>

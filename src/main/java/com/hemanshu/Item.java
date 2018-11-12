@@ -20,11 +20,11 @@ public class Item {
 	private String description;
 	private String image_path;
 
-	public int getId() {
+	public int getid() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setid(int id) {
 		this.id = id;
 	}
 
@@ -36,11 +36,11 @@ public class Item {
 		this.seller_id = seller_id;
 	}
 
-	public String getCategory() {
+	public String getcategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setcategory(String category) {
 		this.category = category;
 	}
 
@@ -76,27 +76,27 @@ public class Item {
 		this.selling_price = selling_price;
 	}
 
-	public boolean isStatus() {
+	public boolean getstatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setstatus(boolean status) {
 		this.status = status;
 	}
 
-	public String getDescription() {
+	public String getdescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setdescription(String description) {
 		this.description = description;
 	}
 
-	public String getImage_path() {
+	public String getimage_path() {
 		return image_path;
 	}
 
-	public void setImage_path(String image_path) {
+	public void setimage_path(String image_path) {
 		this.image_path = image_path;
 	}
 }
