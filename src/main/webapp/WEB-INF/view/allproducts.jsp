@@ -86,12 +86,12 @@
 
               
                 <div class="container">
-                        <div class="row">
+
 
                           <span></span>
                               <c:forEach var="item" items="${item}">
 
-
+                                <div class="row">
                                 <!-- <span>${item}</span> -->
 
                                             <div class="col-sm-4">
@@ -102,7 +102,7 @@
                                  <a data-toggle="modal" data-target="#${item.id}">${item.description}</a></div>
                                 </div>
                             </div>
-
+                            </div>
                             </div>
                         </div>
 
@@ -121,6 +121,7 @@
                                       class="img-responsive" style="width:100%; height:40%;" alt="Image" />
 
                                 <p>${item.seller_id}</p>
+                                 <button type="button" class="btn btn-info" onclick ="window.location.href='/buy-item?id=${item.id}'">Buy</button>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

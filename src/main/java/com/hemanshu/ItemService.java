@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +25,15 @@ public class ItemService {
 			items.add(item);
 		}
 		return items;
+	}
+
+	public Item findByIDnum(int id){
+		for(Item item: itemRepository.findAll()){
+			if (item.id == id) {
+				return item;
+			};
+		}
+		return null;
 	}
 	
 	public void deleteMyitem(int ID) {

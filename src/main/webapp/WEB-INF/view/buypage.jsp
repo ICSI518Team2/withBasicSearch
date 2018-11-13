@@ -74,58 +74,11 @@
       </nav>
       <br/><br/>
 
-      <c:choose>
-		<c:when test="${mode=='All_Products' }">
 
-              <h3> You have chosen
-                <div class="container">
-                        <div class="row">
-
-                          <span></span>
-                              <c:forEach var="item" items="${item}">
+              <h3> You have chosen to purchase ${item.product_name} from ${item.seller_id}</h3>
+              <h3> Call him at #Phone_Number to finalize the deal. Asking price is ${item.selling_price} </h3>
 
 
-                                <!-- <span>${item}</span> -->
-
-                                            <div class="col-sm-4">
-                                              <div class="panel panel-primary">
-                              <div class="panel-heading">${item.product_name}</div>
-                              <div class="panel-body"><img src= "${item.image_path}" class="img-responsive" style="width:100%; height:40%;" alt="Image"></div>
-                              <div class="panel-footer" style= "cursor:pointer">
-                                 <a data-toggle="modal" data-target="#${item.id}">${item.description}</a></div>
-                                </div>
-                            </div>
-
-                            </div>
-                        </div>
-
-
-                        <div class="modal fade" id="${item.id}" role="dialog">
-                            <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">${item.product_name}</h4>
-                              </div>
-                              <div class="modal-body">
-                                     <img src= "${item.image_path}"
-                                      class="img-responsive" style="width:100%; height:40%;" alt="Image" />
-
-                                <p>${item.seller_id}</p>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </c:forEach>
-        </c:when>
-	</c:choose>
 
 
 

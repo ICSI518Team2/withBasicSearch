@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Item {
  
 	@Id
-	private int id;
+	public int id;
 	private int seller_id;
 	private String category;
 	private String cost_price;

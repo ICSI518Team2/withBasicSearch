@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import com.hemanshu.ItemService;
 
 import java.util.List;
 
@@ -82,6 +83,22 @@ public class LoginController {
 		request.setAttribute("users", userService.showAllUsers());
 		request.setAttribute("mode", "ALL_USERS");
 		return "adminpage";
+	}
+	public Item findByIDnum(int id){
+		for(Item item: itemservice.showAllitems()){
+			if (item.id == id) {
+				return item;
+			};
+		}
+		return null;
+	}
+
+	@RequestMapping("/buy-item")
+	public String renderBuyPage(@RequestParam int id, HttpServletRequest request) {
+		Item a= findByIDnum(id);
+		request.setAttribute("item", a);
+		request.setAttribute("mode", "ALL_USERS");
+		return "buypage";
 	}
 
 	@GetMapping("/all-items")
