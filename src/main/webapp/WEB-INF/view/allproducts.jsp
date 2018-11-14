@@ -148,7 +148,7 @@
 
 
                               <span></span>
-                                 
+                                 <c:forEach var="item" items="${item}">
 				
                                     <div class="row">
                                     <!-- <span>${item}</span> -->
@@ -189,7 +189,7 @@
                             </div>
 
                     </div>
-
+				</c:forEach>
                   
             </c:when>
             

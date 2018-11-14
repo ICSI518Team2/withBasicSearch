@@ -19,24 +19,30 @@ public class LoginController {
 	
 	@Autowired
 	ItemService itemservice;
+	
+	@Autowired
+	ItemRepository itemrepository;
 
 
 
-    public Item getProducts(String key){
-        List<Item> itemList = itemservice.showAllitems();
+    public List<Item> getProducts(String key){
+        Iterable<Item> itemList = itemrepository.findAll();
         List<Item> resultSet = null;
         for(Item item: itemList){
+        	System.out.println(item);
         	System.out.println(item.product_name + " "+ key);
             if (item.product_name.equals(key) ){
-                return item;
+                resultSet.add(item);
+                System.out.println(resultSet);
             }
             System.out.println(item.description.indexOf(key));
             if (item.description.indexOf(key)!=-1){
-                return item;
+                resultSet.add(item);
+                System.out.println(resultSet);
             }
 
         }
-        return null;
+        return resultSet;
     }
 
 	@RequestMapping("/admin")
@@ -100,7 +106,7 @@ public class LoginController {
 	public String searchProducts(@RequestParam String key, HttpServletRequest request) {
 		System.out.println("Yo asshole, you typed "+ key);
 		String[] pusher = key.split(",");
-		Item a = getProducts(pusher[1]);
+		List<Item> a = getProducts(pusher[1]);
 		if (a == null)
 		{
 			request.setAttribute("mode", "NO_PRODUCT");
