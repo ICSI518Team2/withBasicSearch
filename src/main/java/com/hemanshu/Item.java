@@ -13,11 +13,11 @@ public class Item {
 	private int seller_id;
 	private String category;
 	private String cost_price;
-	private String product_name;
+	public String product_name;
 	private int quantity;
 	private String selling_price;
 	private boolean status;
-	private String description;
+	public String description;
 	private String image_path;
 
 	public int getid() {

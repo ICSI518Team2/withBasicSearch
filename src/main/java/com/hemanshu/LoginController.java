@@ -19,7 +19,26 @@ public class LoginController {
 	
 	@Autowired
 	ItemService itemservice;
-	
+
+
+
+    public Item getProducts(String key){
+        List<Item> itemList = itemservice.showAllitems();
+        List<Item> resultSet = null;
+        for(Item item: itemList){
+        	System.out.println(item.product_name + " "+ key);
+            if (item.product_name.equals(key) ){
+                return item;
+            }
+            System.out.println(item.description.indexOf(key));
+            if (item.description.indexOf(key)!=-1){
+                return item;
+            }
+
+        }
+        return null;
+    }
+
 	@RequestMapping("/admin")
 	public String Welcome(HttpServletRequest request) {
 		request.setAttribute("mode", "MODE_HOME");
@@ -77,6 +96,23 @@ public class LoginController {
 		return "adminpage";
 	}
 
+	@RequestMapping("/search")
+	public String searchProducts(@RequestParam String key, HttpServletRequest request) {
+		System.out.println("Yo asshole, you typed "+ key);
+		String[] pusher = key.split(",");
+		Item a = getProducts(pusher[1]);
+		if (a == null)
+		{
+			request.setAttribute("mode", "NO_PRODUCT");
+			return "allproducts";
+		}
+		else {
+		request.setAttribute("item", a);
+		request.setAttribute("mode", "SEARCH");
+		return "allproducts";
+		}
+	}
+
 	@RequestMapping("/delete-user")
 	public String deleteUser(@RequestParam int id, HttpServletRequest request) {
 		userService.deleteMyUser(id);
@@ -92,6 +128,8 @@ public class LoginController {
 		}
 		return null;
 	}
+
+
 
 	@RequestMapping("/buy-item")
 	public String renderBuyPage(@RequestParam int id, HttpServletRequest request) {
@@ -122,6 +160,7 @@ public class LoginController {
 		request.setAttribute("mode", "All_Products");
 		return "allproducts";
 	}
+
 	@GetMapping("/allproductslist")
 	public @ResponseBody
 	Iterable<Item> getAllProducts()

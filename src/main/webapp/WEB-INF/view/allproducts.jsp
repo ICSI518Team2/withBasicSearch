@@ -3,6 +3,7 @@
 <html>
 
     <head>
+
         <link rel="shortcut icon" href="img/Student Mart.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
               integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -47,6 +48,7 @@
             padding: 25px;
           }
         </style>
+
       </head>
 
 <body>
@@ -73,10 +75,13 @@
         </div>
       </nav>
       <center>
-      <input type="text" id="search" placeholder="Search for Products">
-      <button class="button_1">
-          <i class="fa fa-search"></i>
-      </button>
+          <form method="post" action="/search?key">
+
+          <input type="text" id ="txt" name="key" >
+
+      
+          <button id="button-id" type="submit">Search Product</button>
+          </form>
       <button type="button" class="btn btn-info">Want to Sell a Product?</button>
     </center>
       <br/><br/>
@@ -133,7 +138,67 @@
 
                 </c:forEach>
         </c:when>
-	</c:choose>
+
+
+
+	<c:when test="${mode=='SEARCH' }">
+
+
+                    <div class="container">
+
+
+                              <span></span>
+                                 
+				
+                                    <div class="row">
+                                    <!-- <span>${item}</span> -->
+
+                                                <div class="col-sm-4">
+                                                  <div class="panel panel-primary">
+                                  <div class="panel-heading">${item.product_name}</div>
+                                  <div class="panel-body"><img src= "${item.image_path}" class="img-responsive" style="width:100%; height:40%;" alt="Image"></div>
+                                  <div class="panel-footer" style= "cursor:pointer">
+                                     <a data-toggle="modal" data-target="#${item.id}">${item.description}</a></div>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+
+
+                            <div class="modal fade" id="${item.id}" role="dialog">
+                                <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">${item.product_name}</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                         <img src= "${item.image_path}"
+                                          class="img-responsive" style="width:100%; height:40%;" alt="Image" />
+
+                                    <p>${item.seller_id}</p>
+                                     <button type="button" class="btn btn-info" onclick ="window.location.href='/buy-item?id=${item.id}'">Buy</button>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                            </div>
+
+                    </div>
+
+                  
+            </c:when>
+            
+            <c:when test="${mode=='NO_PRODUCT' }">
+            
+            	<h5> Item not available </h5>
+            </c:when>
+            
+       </c:choose>
 
 
 
