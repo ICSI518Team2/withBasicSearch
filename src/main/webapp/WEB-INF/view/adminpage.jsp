@@ -25,6 +25,7 @@
 					
 					<li><a href="/show-users">All Users</a></li>
 					<li><a href="/all-items">All items</a></li>
+					<li><a href="/email">Email</a></li>
 				</ul>
 			</div>
 		</div>
@@ -55,7 +56,7 @@
 								<th>phone_number</th>
 								
 								<th>Delete</th>
-								
+								<th>Edit</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,7 +69,8 @@
 									
 									<td><a href="/delete-user?id=${user.ID }"><span
 											class="glyphicon glyphicon-trash"></span></a></td>
-									
+									<td><a href="/edit-user?id=${user.ID }"><span
+											class="glyphicon glyphicon-pencil"></span></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -79,61 +81,6 @@
 		
 		
 		
-		<c:when test="${mode=='All_items' }">
-			<div class="container text-center" id="tasksDiv">
-				<h3>All items</h3>
-				<hr>
-				<div class="table-responsive">
-					<table class="table table-striped table-bordered">
-						<thead>
-							<tr>
-
-								<th>itemID</th>
-								<th>SellerID</th>
-								<th>Category</th>
-								<th>cost_price</th>
-								<th>product_name</th>
-								<th>Quantity</th>
-								<th>selling_price</th>
-								<th>Status</th>
-								
-								<th>Description</th>
-								
-								<th>Delete</th>
-						
-								
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="item" items="${item}">
-								<tr>
-                                    <td>${item.id}</td>
-									<td>${item.seller_id}</td>
-									<td>${item.category}</td>
-									<td>${item.cost_price}</td>
-									<td>${item.product_name}</td>
-									<td>${item.quantity}</td>
-									<td>${item.selling_price}</td>
-									<td>${item.status}</td>
-									<td>${item.description}</td>
-
-
-
-									
-									<td><a href="/delete-item?ID=${item.id }"><span
-											class="glyphicon glyphicon-trash"></span></a></td>
-
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</c:when>
-		
-
-
-
 		
 		
 		
@@ -169,6 +116,52 @@
 					</form>
 					</div>
 					</c:when>
+					
+					
+			<c:when test="${mode=='EMAIL' }">
+			<div class="container" id="homediv">
+				<h3>Email All Users</h3>
+				<form action="/sendemail" method="post">
+					<div class="form-group">
+	                    <label>Subject:</label>
+	                    <input name="subject" type="text" class="form-control" required>
+	                </div>
+	                
+					<div class="form-group">
+			  		<label for="comment">Text:</label>
+			  		<textarea name="text" class="form-control" rows="5" id="comment"></textarea>
+			  		</div>
+			
+					<div class="text-center">
+			        <button type="submit" > Email </button>
+			        </div>
+			    </form>	
+   			</div>
+	
+
+		</c:when>
+		<c:when test="${mode=='SENDEMAIL' }">
+			<div class="container" id="homediv">
+				<h3>Email All Users</h3>
+				<form action="/sendemail" method="post">
+					<div class="form-group">
+	                    <label>Subject:</label>
+	                    <input name="subject" type="text" class="form-control" required>
+	                </div>
+	                
+					<div class="form-group">
+			  		<label for="comment">Text:</label>
+			  		<textarea name="text" class="form-control" rows="5" id="comment"></textarea>
+			  		</div>
+			
+					<div class="text-center">
+			        <button type="submit" > Email </button>
+			        </div>
+			    </form>	
+   			</div>
+	
+			<h3>Email Sent</h3>
+		</c:when>
 	</c:choose>
 
 

@@ -16,7 +16,8 @@ public class LoginController {
 	
 	@Autowired
 	UserService userService;
-	
+	@Autowired
+	EmailService emailService;
 	@Autowired
 	ItemService itemservice;
 	
@@ -104,7 +105,7 @@ public class LoginController {
 
 	@RequestMapping("/search")
 	public String searchProducts(@RequestParam String key, HttpServletRequest request) {
-		System.out.println("Yo asshole, you typed "+ key);
+		System.out.println("you typed "+ key);
 		String[] pusher = key.split(",");
 		List<Item> a = getProducts(pusher[1]);
 		if (a == null)
@@ -174,5 +175,23 @@ public class LoginController {
 		// This returns a JSON or XML with the items
 
 		return itemservice.showAllitems();
+	}
+	@RequestMapping("/email")
+	public String email(HttpServletRequest request) {
+		
+		request.setAttribute("mode", "EMAIL");
+		return "adminpage";
+	}
+	@RequestMapping(value="/sendemail", method=RequestMethod.POST)
+	public String sendemail(@RequestParam("text") String text,@RequestParam("subject") String subject,HttpServletRequest request) {
+		try {
+			
+			emailService.sendEmail(userService.showAllUsers(),text,subject );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("mode", "SENDEMAIL");
+		return "adminpage";
 	}
 }
