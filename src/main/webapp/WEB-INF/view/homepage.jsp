@@ -17,6 +17,7 @@
 
 </head>
 <body>
+
 	<div role="navigation">
 		<div class="navbar navbar-inverse">
 			<a href="/welcome" class="navbar-brand">Student Mart</a>
@@ -71,6 +72,22 @@
 			
 			<p></p>
 	</div>
+<%
+            String userName = (String) session.getAttribute("Username");
+            String additionalURL = (String) request.getAttribute("alias");
+            if (userName != null)
+            {
+                    
+            }
+            else
+            {
+                    out.write("Hello World!");
+            }
+            if (additionalURL == null)
+            {
+                    additionalURL = "";
+            }
+    %>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

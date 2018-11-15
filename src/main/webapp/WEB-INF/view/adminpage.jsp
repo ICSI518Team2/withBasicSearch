@@ -17,20 +17,46 @@
 
 </head>
 <body>
+<%
+//allow access only if session exists
+String user = null;
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+System.out.print("role: "+session.getAttribute("role") );
+if(!session.getAttribute("role").equals("admin")){
+	
+	response.sendRedirect("welcome");
+}
+
+%>
 	<div role="navigation">
 		<div class="navbar navbar-inverse">
 			<a href="/welcome" class="navbar-brand">SELL IT DOWN</a>
+			<form name="myForm"method="post" action="/logout">
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					
+					 
 					<li><a href="/show-users">All Users</a></li>
 					<li><a href="/all-items">All items</a></li>
 					<li><a href="/email">Email</a></li>
+					<li><a href="javascript: submitform()">Logout</a></li>
+					
+					
 				</ul>
 			</div>
+			</form>
 		</div>
 	</div>
+       <script type="text/javascript">
 
+function submitform()
+
+{
+
+ document.myForm.submit();
+
+}
+
+</script>         
 	<c:choose>
 		<c:when test="${mode=='MODE_HOME' }">
 			<div class="container" id="homediv">

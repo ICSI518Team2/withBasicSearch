@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.hemanshu.ItemService;
+import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
@@ -57,7 +58,14 @@ public class LoginController {
 	{
 		return "index";
 	}
-
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "index";
+		
+	}
 	@RequestMapping("/signup")
 	public String signup()
 	{
@@ -81,17 +89,26 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String login(@ModelAttribute("user") User user,BindingResult bindingResult,HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
+
 	   System.out.println(user.getEmailID()+"    ####"+ user.getPassword());
 		if(ur.findByEmailIDAndPassword(user.getEmailID(),user.getPassword())!=null)
 		{
+			session.setAttribute("username", user.getEmailID());
+//			System.out.print("Role in class:"+user.getRole());
 			User d=ur.findByEmailIDAndPassword(user.getEmailID(),user.getPassword() );
+			
 			if(d.getRole().equalsIgnoreCase("admin"))
 			{
+				session.setAttribute("role", "admin");
 				request.setAttribute("mode", "MODE_HOME");
 				return "adminpage";
 			}
-			else
-				return "userpage";
+			else {
+				session.setAttribute("role", "user");
+				request.setAttribute("item", itemservice.showAllitems());
+				request.setAttribute("mode", "All_Products");
+				return "allproducts";}
 		}
 		return "index";
 	}

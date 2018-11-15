@@ -40,7 +40,14 @@
       position: relative;
       border-radius: 12px;
   }
-          
+          button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
       
           /* Add a gray background color and some padding to the footer */
           footer {
@@ -52,6 +59,20 @@
       </head>
 
 <body>
+<%
+//allow access only if session exists
+String user = null;
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+/* 
+else */
+if(session.getAttribute("username") == null){
+	response.sendRedirect("welcome");
+}
+if(session.getAttribute("role").equals("admin")){
+	response.sendRedirect("admin");
+}
+
+%>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -67,13 +88,30 @@
               <li class="active"><a href="#">Home</a></li>
               <li><a href="/contact">Contact</a></li>
             </ul>
+            <form name="myForm"method="post" action="/logout">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
               <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+              
+              <li><a href="javascript: submitform()"  ><span class="glyphicon glyphicon-shopping-off"></span>Logout</a></li>
+             
             </ul>
+             </form>
+
           </div>
         </div>
       </nav>
+          <script type="text/javascript">
+
+function submitform()
+
+{
+
+ document.myForm.submit();
+
+}
+
+</script>         
       <center>
           <form method="post" action="/search?key">
 
@@ -109,7 +147,7 @@
                             </div>
                             </div>
                             </div>
-                        </div>
+                        
 
 
                         <div class="modal fade" id="${item.id}" role="dialog">

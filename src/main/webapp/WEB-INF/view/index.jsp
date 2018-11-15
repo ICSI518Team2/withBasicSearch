@@ -37,6 +37,11 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
+  <%response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+if(session.getAttribute("username") != null){
+	response.sendRedirect("allproducts");
+}
+%>
     <div id="all">
       <!-- Top bar-->
       <div class="top-bar">
@@ -72,7 +77,7 @@
                 <div class="form-group">
                   <input name="emailID" type="text" placeholder="email" class="form-control" value="${user.emailID}" required>
                 </div>
-                <divclass="form-group">
+                <div class="form-group">
                   <input name="password" type="password" placeholder="password" class="form-control" value="${user.password }" required>
                 </div>
                 <p class="text-center">
