@@ -22,6 +22,10 @@
 String user = null;
 response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
 System.out.print("role: "+session.getAttribute("role") );
+if(session.getAttribute("role")== null){
+	response.sendRedirect("welcome");
+}
+else
 if(!session.getAttribute("role").equals("admin")){
 	
 	response.sendRedirect("welcome");

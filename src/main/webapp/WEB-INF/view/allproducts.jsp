@@ -68,6 +68,7 @@ else */
 if(session.getAttribute("username") == null){
 	response.sendRedirect("welcome");
 }
+else
 if(session.getAttribute("role").equals("admin")){
 	response.sendRedirect("admin");
 }

@@ -38,9 +38,17 @@
   </head>
   <body>
   <%response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-if(session.getAttribute("username") != null){
+try{  
+if(session.getAttribute("role") == "user"){
 	response.sendRedirect("allproducts");
 }
+else
+	if(session.getAttribute("role") == "admin"){
+		response.sendRedirect("allproducts");
+	}
+}
+catch (Exception e){}
+
 %>
     <div id="all">
       <!-- Top bar-->
